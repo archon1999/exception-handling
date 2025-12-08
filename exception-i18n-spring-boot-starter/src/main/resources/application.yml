@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: exception-i18n-spring-boot-starter
+
+exception:
+  i18n:
+    base-names: ["messages"]
+    default-locale: en
+    show-code-when-missing: true
