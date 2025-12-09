@@ -2,7 +2,7 @@ package uz.xhamdam;
 
 public enum ExampleErrorCodes implements ErrorCode {
 
-  USER_NOT_FOUND(404, "Resource not found"),
+  RESOURCE_NOT_FOUND(404, "Resource not found"),
   INVALID_REQUEST(400, "Invalid request"),
   INTERNAL_ERROR(500, "Internal server error");
 
