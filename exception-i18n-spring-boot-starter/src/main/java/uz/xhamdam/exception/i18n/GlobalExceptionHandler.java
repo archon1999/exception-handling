@@ -1,5 +1,7 @@
 package uz.xhamdam.exception.i18n;
 
+import static org.springframework.http.HttpStatus.resolve;
+
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Locale;
 import java.util.Optional;
@@ -7,6 +9,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -46,9 +49,9 @@ public class GlobalExceptionHandler {
     ErrorResponse payload = customizer.customize(code, message, request, traceId);
 
     int statusCode = code == null ? 500 : code.httpStatus();
-    org.springframework.http.HttpStatus status = org.springframework.http.HttpStatus.resolve(statusCode);
+    HttpStatus status = resolve(statusCode);
     if (status == null) {
-      status = org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+      status = HttpStatus.INTERNAL_SERVER_ERROR;
     }
 
     // logging
@@ -67,7 +70,7 @@ public class GlobalExceptionHandler {
     String traceId = extractOrCreateTraceId(request);
     ErrorResponse payload = customizer.customize(null, ex.getMessage(), request, traceId);
     log.error("Unhandled exception: path={} traceId={}", request.getRequestURI(), traceId, ex);
-    return ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body(payload);
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(payload);
   }
 
   private String extractOrCreateTraceId(HttpServletRequest request) {

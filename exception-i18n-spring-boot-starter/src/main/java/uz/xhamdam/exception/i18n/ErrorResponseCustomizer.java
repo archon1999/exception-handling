@@ -6,7 +6,8 @@ import uz.xhamdam.ErrorResponse;
 
 public interface ErrorResponseCustomizer {
 
-  ErrorResponse customize(ErrorCode code,
+  ErrorResponse customize(
+      ErrorCode code,
       String message,
       HttpServletRequest request,
       String traceId);

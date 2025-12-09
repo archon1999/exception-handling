@@ -29,8 +29,7 @@ public class ExceptionI18nAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public MessageResolver messageResolver(MessageSource messageSource,
-      ExceptionProperties properties) {
+  public MessageResolver messageResolver(MessageSource messageSource, ExceptionProperties properties) {
     return new MessageResolver(messageSource, properties);
   }
 
