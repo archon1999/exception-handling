@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo-exception-app
+
+exception:
+  i18n:
+    base-names: ["messages"]
+    default-locale: en
+    show-code-when-missing: true
