@@ -1,5 +1,7 @@
 package uz.xhamdam.demoexceptionapp;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Users", description = "User management APIs")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -16,12 +19,14 @@ public class UserController {
 
   public UserController(UserService svc) { this.svc = svc; }
 
+  @Operation(summary = "Get user by ID")
   @GetMapping("/{id}")
   public ResponseEntity<String> getUser(@PathVariable long id) {
     String email = svc.getUserEmail(id);
     return ResponseEntity.ok(email);
   }
 
+  @Operation(summary = "Create user")
   @PostMapping("/{id}")
   public ResponseEntity<Void> createUser(@PathVariable long id, @RequestParam String email) {
     svc.createUser(id, email);

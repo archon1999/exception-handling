@@ -8,7 +8,7 @@ import uz.xhamdam.AppException;
 import uz.xhamdam.ErrorResponse;
 import uz.xhamdam.exception.i18n.ErrorResponseCustomizer;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class CustomGlobalExceptionHandler {
 
   private final ErrorResponseCustomizer customizer;
@@ -17,7 +17,7 @@ public class CustomGlobalExceptionHandler {
     this.customizer = customizer;
   }
 
-  @ExceptionHandler(AppException.class)
+//  @ExceptionHandler(AppException.class)
   public ResponseEntity<ErrorResponse> handle(AppException ex, HttpServletRequest req) {
     // Example: always return 418 for demo
     ErrorResponse res = customizer.customize(ex.getErrorCode(), ex.getMessage(), req, "trace-demo");

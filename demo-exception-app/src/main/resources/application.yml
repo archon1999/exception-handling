@@ -6,4 +6,4 @@ exception:
   i18n:
     base-names: ["messages"]
     default-locale: en
-    show-code-when-missing: true
+    show-code-when-missing: false
